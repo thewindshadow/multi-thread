@@ -13,6 +13,7 @@ public abstract class BaseHealthChecker implements Runnable  {
         super();
         this.countDownLatch = countDownLatch;
         this.serviceName = serviceName;
+
     }
 
     @Override
