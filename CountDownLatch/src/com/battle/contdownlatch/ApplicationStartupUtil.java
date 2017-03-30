@@ -10,13 +10,12 @@ import java.util.concurrent.Executors;
  * Created by Bing.Z on 2017/3/29.
  */
 public class ApplicationStartupUtil {
+    private static final ApplicationStartupUtil instance = new ApplicationStartupUtil();
     private static List<BaseHealthChecker> baseList;
     private static CountDownLatch countDownLatch;
-
     private ApplicationStartupUtil(){
 
     }
-    private static final ApplicationStartupUtil instance = new ApplicationStartupUtil();
 
     public static ApplicationStartupUtil getInstance(){
         return instance;
@@ -33,6 +32,7 @@ public class ApplicationStartupUtil {
         for (final BaseHealthChecker base : baseList) {
             executor.execute(base);
         }
+
         countDownLatch.await();
 
         for (final BaseHealthChecker base : baseList) {
